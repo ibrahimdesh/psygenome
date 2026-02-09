@@ -22,7 +22,7 @@ The system features a **Dual-Stage Pipeline** that acts as an objective diagnost
 - Binary classification: Healthy (109) vs. Unhealthy (391 aggregating Bipolar, Alzheimer's, Schizophrenia)
 
 ## 📖 Report
-[Report]([https://drive.google.com/file/d/1fHUFmcecCSyo0XbT8o2PI0YPLSCKXRfe/view?usp=sharing](https://drive.google.com/file/d/1iCn0vURGf_b3USEd4B9A_yJzMMionPmD/view?usp=share_link))
+[Report](https://drive.google.com/file/d/1iCn0vURGf_b3USEd4B9A_yJzMMionPmD/view?usp=share_link)
 
 ## 🛠️ Installation & Usage
 
