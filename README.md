@@ -1,100 +1,43 @@
 # psygenome
-Binary Classification of Mental Health Disorders Using Machine Learning: A Comprehensive Analysis of the PsyGenome Dataset
-
 # Binary Classification of Mental Health Disorders Using Machine Learning
+This repository contains the code and report for a machine learning system that applies binary classification algorithms to multi-omics data (genomic markers, gene expression, and DNA methylation) to distinguish healthy individuals from those with mental health disorders. The system combines ensemble feature selection with optimized classification models to support early screening and intervention in mental health care, achieving 91.7% accuracy and 94.87% recall.
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-orange.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+The system features a **Dual-Stage Pipeline** that acts as an objective diagnostic support tool for healthcare providers:
+1. **Feature Selection Engine:** Identifies 61 critical biomarkers from 84 multi-omics features using ensemble methods (Lasso + RFECV).
+2. **Classification Model:** Predicts mental health status (Healthy vs. Unhealthy) using Support Vector Machine with RBF kernel for optimal precision-recall balance.
 
-A comprehensive analysis of the PsyGenome-MentalHealth Dataset using machine learning techniques for binary classification of mental health disorders.
+## 🚀 Key Features in the Three-Tier Architecture (Data, Model, and Evaluation)
 
-## 📋 Overview
+* **Ensemble Feature Selection:** Union strategy combining L1-regularized regression (Lasso) and Recursive Feature Elimination (RFECV) to identify robust biomarkers.
+* **Data Pipeline:** Comprehensive preprocessing handling binary transformation, class imbalance (SMOTE), and stratified splitting.
+* **Multi-Algorithm Benchmarking:** Comparative analysis of Logistic Regression, SVM, Random Forest, and Gradient Boosting.
+* **Clinical Metrics Dashboard:** Performance evaluation using Precision, Recall, F1-Score, ROC-AUC, and Confusion Matrix for medical decision support.
+* **High-Dimensional Optimization:** Reduces feature space by 27% (84→61 features) while maintaining superior predictive power.
 
-Mental health disorders affect approximately 1 in 8 people globally, yet many remain undiagnosed. This project applies machine learning to multi-omics data (genomic markers, gene expression, and DNA methylation) to create an effective screening tool that distinguishes healthy individuals from those with mental health conditions.
-
-### Key Achievements
-- **91.7% Accuracy** with Support Vector Machine (SVM)
-- **94.87% Recall** - identifying 94% of individuals with mental health issues
-- **96.11% ROC-AUC** - near-perfect discrimination ability
-- **Reduced feature space** from 84 to 61 features using ensemble feature selection
-
-## 🎯 Problem Statement
-
-The project addresses the diagnostic gap in mental health by:
-- Creating a binary classification system (Healthy vs. Unhealthy)
-- Handling high-dimensional genomic data with limited sample size
-- Managing class imbalance (78% Unhealthy vs. 22% Healthy)
-- Identifying the most relevant biomarkers for mental health screening
-
-## 📊 Dataset
+## 📊 Dataset & Performance
 
 **PsyGenome-MentalHealth Dataset (PG-MHD)**
-- 500 patient records
-- 84 features across multiple domains:
-  - **Demographics**: Age, Gender, Family History
-  - **Genomic Markers**: 50 SNP variants
-  - **Transcriptomic Markers**: 20 Gene Expression levels
-  - **Epigenetic Markers**: 10 DNA Methylation levels
+- 500 patient records with 84 features
+- Multi-omics data: 50 SNP variants, 20 gene expressions, 10 methylation sites
+- Binary classification: Healthy (109) vs. Unhealthy (391 aggregating Bipolar, Alzheimer's, Schizophrenia)
 
-Original classes: Bipolar, Alzheimer's, Schizophrenia, Healthy
+## 📖 Report
+[Report]([https://drive.google.com/file/d/1fHUFmcecCSyo0XbT8o2PI0YPLSCKXRfe/view?usp=sharing](https://drive.google.com/file/d/1iCn0vURGf_b3USEd4B9A_yJzMMionPmD/view?usp=share_link))
 
-## 🔧 Methodology
-
-### 1. Data Preprocessing
-- Binary class transformation (Healthy vs. Unhealthy)
-- SMOTE (Synthetic Minority Over-sampling Technique) for class imbalance
-- Stratified train-test split (80/20)
-
-### 2. Feature Selection
-Ensemble approach combining:
-- **Mutual Information**: Captures non-linear dependencies
-- **L1-Regularized Logistic Regression (Lasso)**: Embedded feature selection
-- **Recursive Feature Elimination (RFECV)**: Iterative feature removal
-- **Union Strategy**: Preserves biomarkers identified by either method
-
-Final feature set: **61 features** (35 SNPs, 18 gene expressions, 8 methylation sites)
-
-### 3. Classification Models
-Four algorithms benchmarked:
-- Logistic Regression (baseline)
-- Support Vector Machine (SVM) with RBF kernel ⭐ **Best performer**
-- Random Forest
-- Gradient Boosting Classifier
-
-### 4. Evaluation Metrics
-- Accuracy, Precision, Recall, F1-Score
-- ROC-AUC Score
-- Confusion Matrix
-
-## 📈 Results
-
-### Model Performance Comparison
-
-| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
-|-------|----------|-----------|--------|----------|---------|
-| **SVM** | **91.72%** | **89.16%** | **94.87%** | **0.9193** | **0.9611** |
-| Random Forest | 87.26% | 80.21% | 98.72% | 0.8851 | 0.9275 |
-| Gradient Boosting | 86.62% | 80.65% | 96.15% | 0.8772 | 0.9120 |
-| Logistic Regression | 67.52% | 66.27% | 70.51% | 0.6833 | 0.7629 |
-
-### SVM Confusion Matrix
-- **True Positives**: 74/78 (94.87% recall)
-- **True Negatives**: 70/79 (88.61% specificity)
-- **False Negatives**: 4
-- **False Positives**: 9
-
-## 🛠️ Installation
+## 🛠️ Installation & Usage
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/mental-health-classification.git
 cd mental-health-classification
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
 # Install dependencies
 pip install -r requirements.txt
+
+# Run the analysis pipeline
+python main.py --data data/PsyGenome_dataset.csv --model svm
+
+# Or explore via Jupyter notebooks
+jupyter notebook notebooks/
+
 
